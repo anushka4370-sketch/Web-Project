@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTrack | Professional Student Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">EduTrack</div>
+        
+        <div class="student-profile-sidebar">
+            <img src="https://via.placeholder.com/80" id="sidebar-photo" class="profile-img-circle">
+            <h4 id="sidebar-name">Loading...</h4>
+            <p id="sidebar-id">ID: #000000</p>
+        </div>
+
+        <div class="role-panel">
+            <span>Admin Mode</span>
+            <label class="switch">
+                <input type="checkbox" id="adminToggle" onchange="toggleAdminMode()">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        
+        <hr>
+        <nav>
+            <a onclick="switchView('dashboard')" id="nav-dashboard" class="nav-link active">
+                <i class="fa fa-home"></i> Dashboard
+            </a>
+            <a onclick="switchView('projects')" id="nav-projects" class="nav-link">
+                <i class="fa fa-folder-open"></i> My Projects
+            </a>
+            <a onclick="switchView('milestones')" id="nav-milestones" class="nav-link">
+                <i class="fa fa-tasks"></i> Milestones
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <h1 id="page-title">Dashboard</h1>
+            <button class="btn-primary student-only" onclick="openModal()">
+                <i class="fa fa-plus"></i> Add Project
+            </button>
+        </header>
+
+        <section id="view-dashboard" class="view">
+            <div class="id-card-container student-only">
+                <div class="id-card">
+                    <div class="id-photo">
+                        <img src="https://via.placeholder.com/100" id="main-photo" alt="Student Photo">
+                    </div>
+                    <div class="id-details">
+                        <h2 id="display-student-name">Student Name</h2>
+                        <p><strong>Student ID:</strong> <span id="display-student-id">#000000</span></p>
+                        <p><strong>Status:</strong> Active Scholar</p>
+                        <button class="btn-small" onclick="editProfile()">Update Profile</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card" style="text-align: center;">
+                    <div class="grade-circle">A+</div>
+                    <p>Current Standing</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="stat-count">0</h3>
+                    <p>Total Projects</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="feedback-count">0</h3>
+                    <p>Reviewed Items</p>
+                </div>
+            </div>
+            
+            <div id="admin-notice" class="card admin-only" style="display:none; background: #fff4e5;">
+                <h3><i class="fa fa-user-shield"></i> Instructor Access</h3>
+                <p>You are viewing this as an Admin. You may review student portfolios and leave feedback.</p>
+            </div>
+        </section>
+
+        <section id="view-projects" class="view" style="display:none;">
+            <div class="project-grid" id="projectDisplay"></div>
+        </section>
+
+        <section id="view-milestones" class="view" style="display:none;">
+            <div class="card">
+                <h3>Project Progress Roadmap</h3>
+                <div id="milestone-list"></div>
+            </div>
+        </section>
+    </main>
+
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <h2>New Portfolio Item</h2>
+            <input type="text" id="titleInput" placeholder="Project Title">
+            <textarea id="descInput" placeholder="Project Description"></textarea>
+            <input type="number" id="progressInput" placeholder="Progress % (0-100)">
+            <div class="modal-actions">
+                <button onclick="closeModal()" class="btn-secondary">Cancel</button>
+                <button onclick="addNewProject()" class="btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <h2>Edit Student Record</h2>
+            <input type="text" id="editName" placeholder="Full Name">
+            <input type="text" id="editID" placeholder="ID Number">
+            <input type="text" id="editPhoto" placeholder="Photo URL">
+            <div class="modal-actions">
+                <button onclick="closeProfileModal()" class="btn-secondary">Cancel</button>
+                <button onclick="saveProfile()" class="btn-primary">Save Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
